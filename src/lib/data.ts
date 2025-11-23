@@ -60,7 +60,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     id: "2",
-    role: "Full Stack Developer",
+    role: "Frontend and Mobile Developer",
     company: "Creative Agency",
     period: "2020 - 2022",
     description:

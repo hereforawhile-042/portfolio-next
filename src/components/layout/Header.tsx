@@ -63,7 +63,8 @@ export function Header() {
                   isActive ? "text-foreground" : "text-muted-foreground"
                 )}
               >
-                <span className="text-muted-foreground/50">//</span> {item.name}
+                <span className="text-muted-foreground/50">{"// "}</span>
+                {item.name}
                 {isActive && (
                   <motion.div
                     layoutId="nav-underline"
@@ -114,7 +115,7 @@ export function Header() {
                       : "text-muted-foreground"
                   )}
                 >
-                  <span className="text-muted-foreground/50">//</span>{" "}
+                  <span className="text-muted-foreground/50">{"// "}</span>
                   {item.name}
                 </Link>
               ))}

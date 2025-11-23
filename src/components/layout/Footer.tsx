@@ -15,8 +15,8 @@ export function Footer() {
               <span className="text-lg font-bold">Jeremiah Egemonye</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Full Stack Developer crafting digital experiences with passion and
-              precision.
+              Frontend and Mobile Developer crafting digital experiences with
+              passion and precision.
             </p>
           </div>
 

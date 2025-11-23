@@ -20,9 +20,76 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Jeremiah Egemonye | Full Stack Developer",
+  metadataBase: new URL("https://portfolio-next-livid-rho.vercel.app"),
+  title:
+    "Jeremiah Egemonye | Frontend & Mobile Developer - React, React Native, Next.js",
   description:
-    "Portfolio of a Full Stack Developer specializing in Next.js and React.",
+    "Jeremiah Egemonye - Result-oriented Frontend and Mobile Developer specializing in React, React Native, Next.js, TypeScript, and modern web technologies. Building accessible, pixel-perfect, and performant web and mobile applications.",
+  keywords: [
+    "Jeremiah Egemonye",
+    "Frontend Developer",
+    "Mobile Developer",
+    "React Developer",
+    "React Native Developer",
+    "Next.js Developer",
+    "TypeScript Developer",
+    "Software Engineer",
+    "Web Developer",
+    "JavaScript Developer",
+    "UI Developer",
+    "Mobile App Developer",
+    "Fullstack Developer",
+    "Nigeria Developer",
+    "Remote Developer",
+    "GSAP",
+    "Tailwind CSS",
+    "Node.js",
+    "GraphQL",
+    "AWS",
+    "Portfolio",
+  ],
+  authors: [{ name: "Jeremiah Egemonye" }],
+  creator: "Jeremiah Egemonye",
+  publisher: "Jeremiah Egemonye",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://portfolio-next-livid-rho.vercel.app",
+    siteName: "Jeremiah Egemonye - Frontend & Mobile Developer",
+    title: "Jeremiah Egemonye | Frontend & Mobile Developer",
+    description:
+      "Result-oriented Frontend and Mobile Developer building accessible, pixel-perfect, and performant web and mobile applications with React, React Native, and Next.js.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jeremiah Egemonye - Frontend & Mobile Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jeremiah Egemonye | Frontend & Mobile Developer",
+    description:
+      "Result-oriented Frontend and Mobile Developer specializing in React, React Native, Next.js, and modern web technologies.",
+    creator: "@_jerry0x",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "2-ct8bLqtRWkFDsoK25Y1NgBUwiux01JV0hLHYDUWyM",
+  },
 };
 
 export default function RootLayout({
