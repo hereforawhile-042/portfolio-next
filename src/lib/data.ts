@@ -45,7 +45,6 @@ export const SKILLS: Skill[] = [
   { name: "PostgreSQL", icon: "postgresql", color: "#4169E1" },
   { name: "GraphQL", icon: "graphql", color: "#E10098" },
   { name: "Framer Motion", icon: "framer", color: "#0055FF" },
-  { name: "AWS", icon: "amazonwebservices", color: "#FF9900" },
   { name: "GSAP", icon: "greensock", color: "#88CE02" },
 ];
 

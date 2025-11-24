@@ -115,27 +115,6 @@ create policy "Public Update" on storage.objects
 
 #### Create Admin User
 
-1. Authentication → Users → Add User
-2. Enter your email and password
-3. Confirm email (or disable email confirmation in settings)
-
-### 4. Environment Variables for Vercel
-
-Add these in Vercel dashboard under Settings → Environment Variables:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-### 5. Domain Setup
-
-If using custom domain `jeremiahegemonye.dev`:
-
-1. Add domain in Vercel
-2. Update DNS records as instructed
-3. Update `url` in `layout.tsx` OpenGraph config if needed
-
 ## 🎯 Post-Deployment Tasks
 
 ### SEO & Analytics

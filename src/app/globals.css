@@ -26,6 +26,28 @@
 }
 
 :root {
+  /* Fallback colors for older browsers (Chrome 60+, Safari 12+) */
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 15%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 15%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 15%);
+  --primary: hsl(0, 0%, 21%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(0, 0%, 97%);
+  --secondary-foreground: hsl(0, 0%, 21%);
+  --muted: hsl(0, 0%, 97%);
+  --muted-foreground: hsl(0, 0%, 56%);
+  --accent: hsl(0, 0%, 97%);
+  --accent-foreground: hsl(0, 0%, 21%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 92%);
+  --input: hsl(0, 0%, 92%);
+  --ring: hsl(0, 0%, 87%);
+
+  /* Modern browsers override with better OKLCH colors */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -49,25 +71,47 @@
 }
 
 .dark {
-  --background: oklch(0 0 0); /* Pure black */
-  --foreground: oklch(1 0 0); /* Pure white */
-  --card: oklch(0.1 0 0); /* Very dark gray */
-  --card-foreground: oklch(1 0 0); /* Pure white */
-  --popover: oklch(0.08 0 0); /* Almost black */
-  --popover-foreground: oklch(1 0 0); /* Pure white */
-  --primary: oklch(0.85 0.2 135); /* Keep lemon green for actions */
-  --primary-foreground: oklch(0.1 0 0); /* Dark for contrast */
-  --secondary: oklch(0.15 0 0); /* Dark gray */
-  --secondary-foreground: oklch(1 0 0); /* Pure white */
-  --muted: oklch(0.15 0 0); /* Dark gray */
-  --muted-foreground: oklch(0.6 0 0); /* Medium gray */
-  --accent: oklch(0.2 0 0); /* Slightly lighter gray */
-  --accent-foreground: oklch(1 0 0); /* Pure white */
-  --destructive: oklch(0.55 0.25 25); /* Keep red for destructive */
-  --destructive-foreground: oklch(1 0 0); /* Pure white */
-  --border: oklch(0.2 0 0); /* Dark gray border */
-  --input: oklch(0.2 0 0); /* Dark gray input */
-  --ring: oklch(0.85 0.2 135); /* Keep lemon green for focus */
+  /* Fallback colors for older browsers */
+  --background: hsl(0, 0%, 0%); /* Pure black */
+  --foreground: hsl(0, 0%, 100%); /* Pure white */
+  --card: hsl(0, 0%, 10%); /* Very dark gray */
+  --card-foreground: hsl(0, 0%, 100%); /* Pure white */
+  --popover: hsl(0, 0%, 8%); /* Almost black */
+  --popover-foreground: hsl(0, 0%, 100%); /* Pure white */
+  --primary: hsl(82, 84%, 67%); /* Lemon green */
+  --primary-foreground: hsl(0, 0%, 10%); /* Dark for contrast */
+  --secondary: hsl(0, 0%, 15%); /* Dark gray */
+  --secondary-foreground: hsl(0, 0%, 100%); /* Pure white */
+  --muted: hsl(0, 0%, 15%); /* Dark gray */
+  --muted-foreground: hsl(0, 0%, 60%); /* Medium gray */
+  --accent: hsl(0, 0%, 20%); /* Slightly lighter gray */
+  --accent-foreground: hsl(0, 0%, 100%); /* Pure white */
+  --destructive: hsl(0, 84%, 60%); /* Red */
+  --destructive-foreground: hsl(0, 0%, 100%); /* Pure white */
+  --border: hsl(0, 0%, 20%); /* Dark gray border */
+  --input: hsl(0, 0%, 20%); /* Dark gray input */
+  --ring: hsl(82, 84%, 67%); /* Lemon green focus */
+
+  /* Modern browsers override with better OKLCH colors */
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.1 0 0);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.08 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.85 0.2 135);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.2 0 0);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.55 0.25 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.2 0 0);
+  --ring: oklch(0.85 0.2 135);
 }
 
 @layer base {
