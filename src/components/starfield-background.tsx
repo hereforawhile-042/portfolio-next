@@ -13,19 +13,9 @@ export function StarfieldBackground() {
       radius: number;
       opacity: number;
       twinkleSpeed: number;
+      baseRadius: number;
       vx: number;
       vy: number;
-    }[]
-  >([]);
-  const shootingStarsRef = useRef<
-    {
-      x: number;
-      y: number;
-      length: number;
-      speed: number;
-      angle: number;
-      opacity: number;
-      active: boolean;
     }[]
   >([]);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -71,7 +61,7 @@ export function StarfieldBackground() {
     };
     window.addEventListener("resize", handleResize);
 
-    // Create stars
+    // Create stars with subtle movement
     const createStars = (count: number) => {
       const stars = [];
       for (let i = 0; i < count; i++) {
@@ -81,8 +71,10 @@ export function StarfieldBackground() {
           radius: Math.random() * 2,
           opacity: Math.random(),
           twinkleSpeed: 0.5 + Math.random() * 2,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
+          baseRadius: Math.random() * 2,
+          // Very subtle drift (75% slower than before)
+          vx: (Math.random() - 0.5) * 0.05,
+          vy: (Math.random() - 0.5) * 0.05,
         });
       }
       return stars;
@@ -90,24 +82,11 @@ export function StarfieldBackground() {
 
     starsRef.current = createStars(200);
 
-    // Create shooting star
-    const createShootingStar = () => {
-      return {
-        x: Math.random() * canvas.width,
-        y: (Math.random() * canvas.height) / 2,
-        length: 80 + Math.random() * 100,
-        speed: 10 + Math.random() * 10,
-        angle: Math.PI / 4 + (Math.random() - 0.5) * 0.5,
-        opacity: 1,
-        active: true,
-      };
-    };
-
-    // Mouse move parallax
+    // Mouse move for pulse effect
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = {
-        x: (e.clientX / window.innerWidth - 0.5) * 2,
-        y: (e.clientY / window.innerHeight - 0.5) * 2,
+        x: e.clientX,
+        y: e.clientY,
       };
     };
     window.addEventListener("mousemove", handleMouseMove);
@@ -127,34 +106,31 @@ export function StarfieldBackground() {
       });
     });
 
-    // Shooting star interval
-    const addShootingStar = () => {
-      if (shootingStarsRef.current.length < 3) {
-        shootingStarsRef.current.push(createShootingStar());
-      }
-    };
-    const shootingStarInterval = setInterval(() => {
-      addShootingStar();
-    }, 2000 + Math.random() * 3000);
-
     // Animation loop
     const animate = () => {
       // Clear with theme-appropriate background fade
       ctx.fillStyle = isDark
-        ? "rgba(9, 15, 9, 0.05)"
-        : "rgba(224, 242, 254, 0.05)";
+        ? "rgba(10, 10, 10, 0.1)"
+        : "rgba(224, 242, 254, 0.1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw stars with parallax
+      // Draw stars with pulse effect and subtle movement
       starsRef.current.forEach((star) => {
-        const parallaxX = mouseRef.current.x * star.radius * 0.5;
-        const parallaxY = mouseRef.current.y * star.radius * 0.5;
+        // Calculate distance from mouse
+        const dx = mouseRef.current.x - star.x;
+        const dy = mouseRef.current.y - star.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Pulse effect: stars closer to mouse get bigger
+        const maxDistance = 200;
+        const pulseStrength = Math.max(0, 1 - distance / maxDistance);
+        const radiusMultiplier = 1 + pulseStrength * 0.5;
 
         ctx.beginPath();
         ctx.arc(
-          star.x + parallaxX,
-          star.y + parallaxY,
-          star.radius,
+          star.x,
+          star.y,
+          star.baseRadius * radiusMultiplier,
           0,
           Math.PI * 2
         );
@@ -165,7 +141,7 @@ export function StarfieldBackground() {
           : `rgba(100, 100, 100, ${star.opacity * 0.6})`;
         ctx.fill();
 
-        // Slight movement
+        // Very subtle movement
         star.x += star.vx;
         star.y += star.vy;
 
@@ -174,53 +150,6 @@ export function StarfieldBackground() {
         if (star.x > canvas.width) star.x = 0;
         if (star.y < 0) star.y = canvas.height;
         if (star.y > canvas.height) star.y = 0;
-      });
-
-      // Draw shooting stars
-      shootingStarsRef.current.forEach((star, index) => {
-        if (!star.active) return;
-
-        const gradient = ctx.createLinearGradient(
-          star.x,
-          star.y,
-          star.x - Math.cos(star.angle) * star.length,
-          star.y - Math.sin(star.angle) * star.length
-        );
-
-        if (isDark) {
-          gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
-          gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-        } else {
-          gradient.addColorStop(
-            0,
-            `rgba(100, 100, 100, ${star.opacity * 0.5})`
-          );
-          gradient.addColorStop(1, "rgba(100, 100, 100, 0)");
-        }
-
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(
-          star.x - Math.cos(star.angle) * star.length,
-          star.y - Math.sin(star.angle) * star.length
-        );
-        ctx.stroke();
-
-        // Move shooting star
-        star.x += Math.cos(star.angle) * star.speed;
-        star.y += Math.sin(star.angle) * star.speed;
-        star.opacity -= 0.01;
-
-        // Remove if off screen or faded
-        if (
-          star.x > canvas.width ||
-          star.y > canvas.height ||
-          star.opacity <= 0
-        ) {
-          shootingStarsRef.current.splice(index, 1);
-        }
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -234,11 +163,7 @@ export function StarfieldBackground() {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      if (shootingStarInterval) {
-        clearInterval(shootingStarInterval);
-      }
       gsap.killTweensOf(starsRef.current);
-      shootingStarsRef.current = [];
     };
   }, [theme, systemTheme, mounted]);
 
@@ -255,7 +180,7 @@ export function StarfieldBackground() {
       className="fixed inset-0 pointer-events-none z-0"
       style={{
         background: isDark
-          ? "radial-gradient(ellipse at bottom, #1b351b 0%, #090f09 100%)"
+          ? "radial-gradient(ellipse at bottom, #0a0a0a 0%, #000000 100%)"
           : "radial-gradient(ellipse at bottom, #f0f9ff 0%, #e0f2fe 100%)",
       }}
     />

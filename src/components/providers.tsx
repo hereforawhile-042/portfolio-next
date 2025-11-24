@@ -2,6 +2,7 @@
 
 import { AuthProvider } from "@/context/AuthContext";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { Preloader } from "@/components/preloader";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +12,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        <Preloader />
+        {children}
+      </AuthProvider>
     </NextThemesProvider>
   );
 }

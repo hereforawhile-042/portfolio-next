@@ -130,7 +130,7 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-24">
+      <section className="py-12 md:py-24">
         <div className="mb-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
             My Skills
